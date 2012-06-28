@@ -1,0 +1,20 @@
+GIT_URI="git://github.com/Quixotix/${PN}.git"
+#GIT_TAG="v${PV}"
+inherit git python
+
+src_compile() { :; }
+
+src_install() {
+	local plugindir="/usr/lib/gedit/plugins"
+	local schemadir="/usr/share/glib-2.0/schemas"
+
+	cd ${S}
+	insinto ${plugindir}
+	doins restoretabs.plugin restoretabs.py
+	python_optimize ${plugindir}
+
+	insinto ${schemadir}
+	doins *.gschema.xml
+}
+
+DOCS="README.markdown"

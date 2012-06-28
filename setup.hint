@@ -1,0 +1,7 @@
+category: Editors
+requires: gedit python python-gi girepository-Gtk3.0
+sdesc: "Gedit session restoration plugin"
+ldesc: "This is a plugin for Gedit, the official text editor of the 
+GNOME desktop environment. Upon starting Gedit, this plugin will try 
+restore all open documents from the last Gedit window that was closed."
+
