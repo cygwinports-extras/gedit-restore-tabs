@@ -1,0 +1,32 @@
+GIT_URI="git://github.com/Quixotix/${PN}.git"
+#GIT_TAG="v${PV}"
+inherit git python
+
+NAME="gedit-restore-tabs"
+VERSION=3.0.0
+RELEASE=2
+CATEGORY="Editors"
+SUMMARY="Gedit session restoration plugin"
+DESCRIPTION="This is a plugin for Gedit, the official text editor of the GNOME
+desktop environment. Upon starting Gedit, this plugin will try restore all open
+documents from the last Gedit window that was closed."
+HOMEPAGE="https://github.com/Quixotix"
+
+REQUIRES="gedit girepository-Gtk3.0"
+
+src_compile() { :; }
+
+src_install() {
+	local plugindir="/usr/lib/gedit/plugins"
+	local schemadir="/usr/share/glib-2.0/schemas"
+
+	cd ${S}
+	insinto ${plugindir}
+	doins restoretabs.plugin restoretabs.py
+	python_optimize ${plugindir}
+
+	insinto ${schemadir}
+	doins *.gschema.xml
+}
+
+DOCS="README.markdown"
